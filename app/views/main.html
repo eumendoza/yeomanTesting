@@ -11,6 +11,10 @@
     </div>
   </form>
   <p></p>
-  <p class="form-group" ng-repeat="tarea in tareas">
+
+  <p class="input-group" ng-repeat="tarea in tareas">
     <input type="text" ng-model="tarea" class="form-control">
+    <span class="input-group-btn">
+      <button class="btn btn-danger" ng-click="eliminarTarea($index)" aria-label="Eliminar">X</button>
+    </span>
   </p>

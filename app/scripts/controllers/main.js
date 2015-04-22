@@ -1,8 +1,12 @@
 'use strict';
 
 angular.module('tareasApp')
-.controller('MainCtrl',function($scope){
-	$scope.tareas= ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
+.controller('MainCtrl',function($scope, localStorageService){
+	var tareasAlmacen = localStorageService.get('tareas');
+	$scope.tareas = tareasAlmacen && tareasAlmacen.split('\n') || [];
+	$scope.$watch('tareas', function(){
+		localStorageService.add('tareas', $scope.tareas.join('\n'));
+	}, true);
 	$scope.addTarea = function(){
 		$scope.tareas.push($scope.tarea);
 		$scope.tarea = '';
